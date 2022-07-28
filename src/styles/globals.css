@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.tag-bg {
+  @apply bg-brand-secondary px-2 py-1 rounded-full border border-gray-400 font-bold;
+}
+.tag-text {
+  @apply text-gray-400;
+}
+
+.date-bg {
+  @apply bg-brand-secondary px-2 py-1 rounded-full border border-gray-400 font-bold;
+}
+.date-text {
+  @apply text-gray-400;
+}
+
+.item-ul {
+  @apply text-xl ml-10;
+}
+.item-name {
+  @apply text-white font-semibold;
+}
+.item-note {
+  @apply text-gray-500;
+}
+
+@layer base {
+  body {
+    @apply bg-brand-primary;
+  }
+  p {
+    @apply text-white;
+  }
+  li {
+    @apply text-white;
+  }
+}
