@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import Image from "next/image";
 import { trpc } from "../utils/trpc";
-import Item from "./item";
+import Item from "./Item";
 
 // interface ItemProps {
 //   name: string;
@@ -19,6 +19,11 @@ const ItemContainer: NextPage = () => {
   const { data: previousItems } = trpc.useQuery(["items.get-previous-items"]);
   const { data: upcomingItems } = trpc.useQuery(["items.get-upcoming-items"]);
 
+  // const { data: selectedItem } = trpc.useQuery([
+  //   "items.get-selected-item",
+  //   { id: "cl5sjh4kq001800v2ffg31m21" },
+  // ]);
+
   return (
     <div className="flex flex-col items-center gap-5">
       <div className="">
@@ -31,11 +36,12 @@ const ItemContainer: NextPage = () => {
       {previousItems?.map((item) => (
         <Item
           key={item.id}
+          id={item.id}
           date={item.date.toLocaleDateString()}
           name={item.name}
           note={item.note}
           category={item.category}
-          size={100}
+          // size={100}
         />
       ))}
       <div className="">
@@ -48,13 +54,15 @@ const ItemContainer: NextPage = () => {
       {latestItems?.map((item) => (
         <Item
           key={item.id}
+          id={item.id}
           date={item.date.toLocaleDateString()}
           name={item.name}
           note={item.note}
           category={item.category}
-          size={200}
+          // size={200}
         />
       ))}
+
       <div className="">
         <div className="tag-bg">
           <p className="tag-text">Upcoming</p>
@@ -65,6 +73,7 @@ const ItemContainer: NextPage = () => {
       {upcomingItems?.map((item) => (
         <Item
           key={item.id}
+          id={item.id}
           date={item.date.toLocaleDateString()}
           name={item.name}
           note={item.note}

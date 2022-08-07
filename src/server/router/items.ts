@@ -20,7 +20,7 @@ export const getItemsRouter = createProtectedRouter()
             },
             {
               date: {
-                lte: dateThreshold,
+                lt: dateThreshold,
               },
             },
           ],
@@ -75,7 +75,7 @@ export const getItemsRouter = createProtectedRouter()
             },
             {
               date: {
-                gte: new Date(Date.now()),
+                gt: new Date(Date.now()),
               },
             },
           ],
@@ -86,5 +86,26 @@ export const getItemsRouter = createProtectedRouter()
         // take: 1,
       });
       return upcoming;
+    },
+  })
+  .query("get-selected-item", {
+    input: z.object({
+      id: z.string(),
+    }),
+
+    async resolve({ ctx, input }) {
+      const selectedItem = await ctx.prisma.item.findFirst({
+        where: {
+          AND: [
+            {
+              userId: ctx.session.user.id,
+            },
+            {
+              id: input?.id,
+            },
+          ],
+        },
+      });
+      return selectedItem;
     },
   });

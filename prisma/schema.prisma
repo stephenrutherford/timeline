@@ -20,7 +20,7 @@ model Item {
   note     String?
   image    String?
   category Int?
-  date     DateTime @default(dbgenerated("NOW() + interval '1 day'")) 
+  date     DateTime @default(dbgenerated("NOW() + interval '1 day'")) @db.Date
   userId   String
   user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

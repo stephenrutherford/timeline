@@ -1,14 +1,30 @@
 import type { NextPage } from "next";
 import Image from "next/image";
+import { MouseEventHandler } from "react";
+import useMenuStore from "../stores/menu";
+import { trpc } from "../utils/trpc";
 
 interface ItemProps {
+  id: string;
   date: string;
   name: string;
   note: string | null;
   category: number | null;
+  // onClick: () => void | MouseEventHandler;
 }
 
-const Item: NextPage<ItemProps> = ({ date, name, note, category }) => {
+const Item: NextPage<ItemProps> = ({ id, date, name, note, category }) => {
+  // const setItemId = useMenuStore((state) => state.idToEdit);
+  const idToEdit = useMenuStore((state) => state.idToEdit);
+  const updateEditId = useMenuStore((state) => state.updateEditId);
+  const { refetch } = trpc.useQuery([
+    "items.get-selected-item",
+    { id: idToEdit },
+  ]);
+  // const menuOpen = useMenuStore((state) => state.show);
+  const closeEditMenu = useMenuStore((state) => state.closeEditMenu);
+  const openEditMenu = useMenuStore((state) => state.openEditMenu);
+
   return (
     <div className="flex flex-row  h-[200px] w-full border">
       {/*// ? Left */}
@@ -22,7 +38,16 @@ const Item: NextPage<ItemProps> = ({ date, name, note, category }) => {
       </div>
       {/*// ? Middle */}
       <div className="rounded-xl border-4 border-red-500 overflow-hidden grow-0 min-w-[200px]">
-        <Image src="/images/persona_4.webp" width={200} height={200} alt="" />
+        <Image
+          src="/images/persona_4.webp"
+          width={200}
+          height={200}
+          alt=""
+          onClick={() => {
+            updateEditId(id);
+            // refetch();
+          }}
+        />
       </div>
       {/*// ? Right */}
       <div className="flex flex-col grow h-full w-full justify-center min-w-[300px]">

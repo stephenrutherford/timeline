@@ -26,6 +26,47 @@
   @apply text-gray-500;
 }
 
+.form-error {
+  @apply text-red-500 italic;
+}
+.form-container {
+  @apply flex flex-col gap-1;
+}
+.form-header {
+  @apply flex flex-row justify-between;
+}
+.form-title {
+  @apply text-white text-xl;
+}
+.form-close-button {
+  @apply rounded-xl p-2 text-gray-500 hover:bg-red-500 hover:cursor-pointer hover:text-white;
+}
+.form-icon {
+  @apply h-6 w-6;
+}
+.form-img-parent {
+  @apply rounded-xl overflow-hidden w-[200px] h-[200px] min-w-[200px] min-h-[200px] grow-0 bg-white;
+}
+.form-img {
+  @apply w-full h-full object-cover;
+}
+
+.form-upload-input {
+  @apply file:bg-blue-500 file:hover:bg-blue-700 file:text-white file:font-bold file:py-2 file:px-4 file:rounded-xl;
+}
+.form-text-label {
+  @apply text-gray-500;
+}
+.form-text-input {
+  @apply text-black rounded-md p-1;
+}
+.form-submit {
+  @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl mt-2;
+}
+.form-cancel {
+  @apply bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-xl mt-2;
+}
+
 @layer base {
   body {
     @apply bg-brand-primary;

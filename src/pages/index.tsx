@@ -1,10 +1,16 @@
 import type { NextPage } from "next";
+import { useState, useRef, useEffect } from "react";
 import Head from "next/head";
 import { useSession, signIn, signOut } from "next-auth/react";
 import { trpc } from "../utils/trpc";
 import Landing from "../components/Landing";
 import ItemContainer from "../components/ItemContainer";
-import Upcoming from "../components/Upcoming";
+import User from "../components/User";
+import UserAdjustments from "../components/UserAdjustments";
+import ItemForm from "../components/ItemForm";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
+import create from "zustand";
+import useMenuStore from "../stores/menu";
 
 type TechnologyCardProps = {
   name: string;
@@ -12,8 +18,28 @@ type TechnologyCardProps = {
   documentation: string;
 };
 
+// type MyStore = {
+//   show: boolean;
+//   toggleShow: () => void;
+// };
+
+// const useStore = create<MyStore>((set) => ({
+//   show: false,
+//   toggleShow: () => set((state) => ({ show: !state.show })),
+// }));
+
 const Home: NextPage = () => {
   const { data, status } = useSession();
+  const [showItemForm, setShowItemForm] = useState(true);
+  const [listRef] = useAutoAnimate<HTMLDivElement>();
+
+  const showEditMenu = useMenuStore((state) => state.showEditMenu);
+  const toggleEditMenu = useMenuStore((state) => state.toggleEditMenu);
+  const openEditMenu = useMenuStore((state) => state.openEditMenu);
+
+  const showAdjustmentsMenu = useMenuStore(
+    (state) => state.showAdjustmentsMenu
+  );
 
   if (status === "loading") {
     return (
@@ -36,15 +62,19 @@ const Home: NextPage = () => {
       </Head>
 
       <div className="">
-        <p>
-          Signed in as{" "}
-          <span className="font-bold text-purple-500">{data.user?.name}</span> -
-          <span className="font-bold text-purple-500">{data.user?.id}</span>
-        </p>
-        <button className="text-white" onClick={() => signOut()}>
-          Sign out
-        </button>
         {/* // * Menu */}
+        <div
+          className="flex flex-col p-4 w-[400px] fixed top-0 left-0 gap-4"
+          ref={listRef}
+        >
+          <User />
+          {showAdjustmentsMenu && <UserAdjustments />}
+
+          <button onClick={toggleEditMenu} className="text-white">
+            toggle menu
+          </button>
+          {showEditMenu && <ItemForm />}
+        </div>
         {/* // * Main Canvas */}
         <div className="container flex flex-col max-w-7xl h-screen border border-gray-700 items-center gap-10">
           {/* // ? Dashed Line */}
