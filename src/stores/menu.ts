@@ -1,5 +1,5 @@
 import create from "zustand";
-// import { trpc } from "../utils/trpc";
+import { StateStoreType } from "../types/states";
 
 // type item = {
 //   id: string;
@@ -9,27 +9,25 @@ import create from "zustand";
 //   category: number | null;
 // };
 
-type MyStore = {
-  // * Editing an Item State
-  showEditMenu: boolean;
-  toggleEditMenu: () => void;
-  openEditMenu: () => void;
-  closeEditMenu: () => void;
-  idToEdit: string;
-  updateEditId: (input: string) => void;
-  // Item: item[];
-  // updateItem: (input: item) => void;
+// type MyStore = {
+//   // * Editing an Item State
+//   showEditMenu: boolean;
+//   toggleEditMenu: () => void;
+//   openEditMenu: () => void;
+//   closeEditMenu: () => void;
+//   idToEdit: string;
+//   updateEditId: (input: string) => void;
+//   // Item: item[];
+//   // updateItem: (input: item) => void;
 
-  // * User Preferences State
-  showAdjustmentsMenu: boolean;
-  toggleAdjustmentsMenu: () => void;
-  openAdjustmentsMenu: () => void;
-  closeAdjustmentsMenu: () => void;
-};
+//   // * User Preferences State
+//   showAdjustmentsMenu: boolean;
+//   toggleAdjustmentsMenu: () => void;
+//   openAdjustmentsMenu: () => void;
+//   closeAdjustmentsMenu: () => void;
+// };
 
-// const utils = trpc.useContext();
-
-const useMenuStore = create<MyStore>((set) => ({
+const useMenuStore = create<StateStoreType>((set) => ({
   // * Editing an Item State
   showEditMenu: false,
   toggleEditMenu: () =>
@@ -47,29 +45,6 @@ const useMenuStore = create<MyStore>((set) => ({
       showEditMenu: true,
       showAdjustmentsMenu: false,
     })),
-
-  // Item: [
-  //   {
-  //     id: "",
-  //     name: "",
-  //     date: "",
-  //     note: "",
-  //     category: 1,
-  //   },
-  // ],
-  // updateItem: (input) => {
-  //   set((state) => ({
-  //     Item: [
-  //       {
-  //         id: input.id,
-  //         name: input.name,
-  //         date: input.date,
-  //         note: input.note,
-  //         category: input.category,
-  //       },
-  //     ],
-  //   }));
-  // },
 
   // * User Preferences State
   showAdjustmentsMenu: false,
