@@ -2,14 +2,15 @@ import type { NextPage } from "next";
 import { useForm } from "react-hook-form";
 import { XIcon } from "@heroicons/react/solid";
 import useMenuStore from "../stores/menu";
+import { UserAdjustmentsType } from "../types/user";
 
-type FormData = {
-  category_one: string;
-  category_two: string;
-  category_three: string;
-  category_four: string;
-  category_five: string;
-};
+// type FormData = {
+//   category_one: string;
+//   category_two: string;
+//   category_three: string;
+//   category_four: string;
+//   category_five: string;
+// };
 
 const UserAdjustments: NextPage = () => {
   const {
@@ -17,7 +18,7 @@ const UserAdjustments: NextPage = () => {
     setValue,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>();
+  } = useForm<UserAdjustmentsType>();
 
   const onSubmit = handleSubmit((data) => console.log(data));
 

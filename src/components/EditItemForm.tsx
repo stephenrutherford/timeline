@@ -5,13 +5,14 @@ import { useForm } from "react-hook-form";
 import { XIcon } from "@heroicons/react/solid";
 import useMenuStore from "../stores/menu";
 import { trpc } from "../utils/trpc";
+import { EditItemFormType } from "../types/item";
 
-type FormData = {
-  date: string;
-  name: string;
-  note: string | null;
-  category: number | null;
-};
+// type FormData = {
+//   date: string;
+//   name: string;
+//   note: string | null;
+//   category: number | null;
+// };
 
 const EditItemForm: NextPage = () => {
   const {
@@ -20,7 +21,7 @@ const EditItemForm: NextPage = () => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<FormData>();
+  } = useForm<EditItemFormType>();
   const onSubmit = handleSubmit((data) => console.log(data));
 
   // * States

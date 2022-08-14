@@ -3,17 +3,18 @@ import Image from "next/image";
 // import { MouseEventHandler } from "react";
 import useMenuStore from "../stores/menu";
 // import { trpc } from "../utils/trpc";
+import { ItemCardType } from "../types/item";
 
-interface ItemProps {
-  id: string;
-  date: string;
-  name: string;
-  note: string | null;
-  category: number | null;
-  // onClick: () => void | MouseEventHandler;
-}
+// interface ItemProps {
+//   id: string;
+//   date: string;
+//   name: string;
+//   note: string | null;
+//   category: number | null;
+//   // onClick: () => void | MouseEventHandler;
+// }
 
-const ItemCardContainer: NextPage<ItemProps> = ({
+const ItemCardContainer: NextPage<ItemCardType> = ({
   id,
   date,
   name,
