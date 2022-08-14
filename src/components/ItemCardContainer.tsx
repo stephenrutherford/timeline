@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import Image from "next/image";
 import { trpc } from "../utils/trpc";
-import Item from "./Item";
+import ItemCard from "./ItemCard";
 
 // interface ItemProps {
 //   name: string;
@@ -34,7 +34,7 @@ const ItemContainer: NextPage = () => {
       {/* // ! If no items in DB */}
       {!previousItems && <div>No data Found, add one?</div>}
       {previousItems?.map((item) => (
-        <Item
+        <ItemCard
           key={item.id}
           id={item.id}
           date={item.date.toLocaleDateString()}
@@ -52,7 +52,7 @@ const ItemContainer: NextPage = () => {
       {/* // ! If no items in DB */}
       {!latestItems && <div>No data Found, add one?</div>}
       {latestItems?.map((item) => (
-        <Item
+        <ItemCard
           key={item.id}
           id={item.id}
           date={item.date.toLocaleDateString()}
@@ -71,7 +71,7 @@ const ItemContainer: NextPage = () => {
       {/* // ! If no items in DB */}
       {!upcomingItems && <div>No data Found, add one?</div>}
       {upcomingItems?.map((item) => (
-        <Item
+        <ItemCard
           key={item.id}
           id={item.id}
           date={item.date.toLocaleDateString()}

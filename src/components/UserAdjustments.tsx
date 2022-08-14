@@ -1,9 +1,7 @@
 import type { NextPage } from "next";
 import { useForm } from "react-hook-form";
-import { trpc } from "../utils/trpc";
 import { XIcon } from "@heroicons/react/solid";
 import useMenuStore from "../stores/menu";
-import { Popover } from "@headlessui/react";
 
 type FormData = {
   category_one: string;
@@ -62,16 +60,7 @@ const UserAdjustments: NextPage = () => {
           placeholder="Category 5"
         />
         <div className="flex flex-col">
-          <button
-            className="form-submit"
-            type="submit"
-            //   onClick={() => {
-            //     setValue("name", "test title");
-            //     setValue("date", "2020-01-01");
-            //     setValue("note", "this is a note");
-            //     setValue("category", 2);
-            //   }}
-          >
+          <button className="form-submit" type="submit">
             Update
           </button>
           <button

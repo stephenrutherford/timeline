@@ -1,6 +1,14 @@
 import create from "zustand";
 // import { trpc } from "../utils/trpc";
 
+// type item = {
+//   id: string;
+//   date: string;
+//   name: string;
+//   note: string | null;
+//   category: number | null;
+// };
+
 type MyStore = {
   // * Editing an Item State
   showEditMenu: boolean;
@@ -9,6 +17,8 @@ type MyStore = {
   closeEditMenu: () => void;
   idToEdit: string;
   updateEditId: (input: string) => void;
+  // Item: item[];
+  // updateItem: (input: item) => void;
 
   // * User Preferences State
   showAdjustmentsMenu: boolean;
@@ -37,6 +47,29 @@ const useMenuStore = create<MyStore>((set) => ({
       showEditMenu: true,
       showAdjustmentsMenu: false,
     })),
+
+  // Item: [
+  //   {
+  //     id: "",
+  //     name: "",
+  //     date: "",
+  //     note: "",
+  //     category: 1,
+  //   },
+  // ],
+  // updateItem: (input) => {
+  //   set((state) => ({
+  //     Item: [
+  //       {
+  //         id: input.id,
+  //         name: input.name,
+  //         date: input.date,
+  //         note: input.note,
+  //         category: input.category,
+  //       },
+  //     ],
+  //   }));
+  // },
 
   // * User Preferences State
   showAdjustmentsMenu: false,

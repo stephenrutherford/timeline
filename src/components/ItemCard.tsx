@@ -1,8 +1,8 @@
 import type { NextPage } from "next";
 import Image from "next/image";
-import { MouseEventHandler } from "react";
+// import { MouseEventHandler } from "react";
 import useMenuStore from "../stores/menu";
-import { trpc } from "../utils/trpc";
+// import { trpc } from "../utils/trpc";
 
 interface ItemProps {
   id: string;
@@ -13,20 +13,31 @@ interface ItemProps {
   // onClick: () => void | MouseEventHandler;
 }
 
-const Item: NextPage<ItemProps> = ({ id, date, name, note, category }) => {
+const ItemCardContainer: NextPage<ItemProps> = ({
+  id,
+  date,
+  name,
+  note,
+  category,
+}) => {
   // const setItemId = useMenuStore((state) => state.idToEdit);
-  const idToEdit = useMenuStore((state) => state.idToEdit);
+  // const idToEdit = useMenuStore((state) => state.idToEdit);
   const updateEditId = useMenuStore((state) => state.updateEditId);
-  const { refetch } = trpc.useQuery([
-    "items.get-selected-item",
-    { id: idToEdit },
-  ]);
+
+  // const { data } = trpc.useQuery(
+  //   ["items.get-selected-item", { id: idToEdit }]
+  // );
+
   // const menuOpen = useMenuStore((state) => state.show);
   const closeEditMenu = useMenuStore((state) => state.closeEditMenu);
   const openEditMenu = useMenuStore((state) => state.openEditMenu);
 
   return (
     <div className="flex flex-row  h-[200px] w-full border">
+      {/* <div className="absolute top-80 left-80">
+        <p>{data?.id}</p>
+        <p>{data?.name}</p>
+      </div> */}
       {/*// ? Left */}
       <div className="flex grow h-full w-full items-center justify-end min-w-[300px]">
         <div className="mr-10">
@@ -45,6 +56,7 @@ const Item: NextPage<ItemProps> = ({ id, date, name, note, category }) => {
           alt=""
           onClick={() => {
             updateEditId(id);
+            // console.log("clicked on: ", name);
             // refetch();
           }}
         />
@@ -61,4 +73,4 @@ const Item: NextPage<ItemProps> = ({ id, date, name, note, category }) => {
   );
 };
 
-export default Item;
+export default ItemCardContainer;

@@ -1,3 +1,12 @@
-# Create T3 App
+# Remaining Items
 
-This is an app bootstrapped according to the [init.tips](https://init.tips) stack, also known as the T3-Stack.
+- Image Upload
+- Mobile Layout
+- Colors
+- Form Edit Item / Mutation
+- Form Create Item
+- User Preferences Categories
+- Latest => Next?
+- Refactor types to Zod and single export
+- Caching
+- Disable Query on windowfocus

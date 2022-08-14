@@ -4,10 +4,10 @@ import Head from "next/head";
 import { useSession, signIn, signOut } from "next-auth/react";
 import { trpc } from "../utils/trpc";
 import Landing from "../components/Landing";
-import ItemContainer from "../components/ItemContainer";
-import User from "../components/User";
+import ItemCardContainer from "../components/ItemCardContainer";
+import UserMenu from "../components/UserMenu";
 import UserAdjustments from "../components/UserAdjustments";
-import ItemForm from "../components/ItemForm";
+import EditItemForm from "../components/EditItemForm";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import create from "zustand";
 import useMenuStore from "../stores/menu";
@@ -67,19 +67,19 @@ const Home: NextPage = () => {
           className="flex flex-col p-4 w-[400px] fixed top-0 left-0 gap-4"
           ref={listRef}
         >
-          <User />
+          <UserMenu />
           {showAdjustmentsMenu && <UserAdjustments />}
 
           <button onClick={toggleEditMenu} className="text-white">
             toggle menu
           </button>
-          {showEditMenu && <ItemForm />}
+          {showEditMenu && <EditItemForm />}
         </div>
         {/* // * Main Canvas */}
         <div className="container flex flex-col max-w-7xl h-screen border border-gray-700 items-center gap-10">
           {/* // ? Dashed Line */}
           <div className="absolute h-screen w-[2px] bg-transparent border-2 border-dashed border-gray-500 -z-10"></div>
-          <ItemContainer />
+          <ItemCardContainer />
         </div>
       </div>
     </>
